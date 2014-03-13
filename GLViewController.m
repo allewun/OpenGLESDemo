@@ -23,6 +23,7 @@
   
   self.button = [[UIButton alloc] initWithFrame:CGRectMake(85, [UIScreen mainScreen].bounds.size.height - 60, 150, 40)];
   [self.button setTitle:@"glReadPixels();" forState:UIControlStateNormal];
+  [self.button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
   [self.button setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.5]];
   [self.button setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
   [self.button setTitleShadowColor:[UIColor blackColor] forState:UIControlStateNormal];
