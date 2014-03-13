@@ -17,6 +17,6 @@
 @property (nonatomic) GLuint framebuffer;
 @property (nonatomic) GLuint renderbuffer;
 @property (nonatomic) GLint backingWidth;
-@property (nonatomic) GLint backingHeight;;
+@property (nonatomic) GLint backingHeight;
 
 @end

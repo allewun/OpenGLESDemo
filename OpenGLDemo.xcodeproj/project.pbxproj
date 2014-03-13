@@ -54,6 +54,7 @@
 		9F38595018D16CB30071F40F /* GLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLViewController.m; path = ../GLViewController.m; sourceTree = "<group>"; };
 		9F38595218D1807A0071F40F /* GLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLView.h; sourceTree = "<group>"; };
 		9F38595318D1807A0071F40F /* GLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLView.m; sourceTree = "<group>"; };
+		9F38595618D191E60071F40F /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = ../Constants.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +120,7 @@
 				9F38595018D16CB30071F40F /* GLViewController.m */,
 				9F38595218D1807A0071F40F /* GLView.h */,
 				9F38595318D1807A0071F40F /* GLView.m */,
+				9F38595618D191E60071F40F /* Constants.h */,
 				9F38593218D14FA60071F40F /* Images.xcassets */,
 				9F38592718D14FA60071F40F /* Supporting Files */,
 			);

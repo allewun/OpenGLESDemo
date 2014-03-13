@@ -109,10 +109,50 @@
   glBindFramebufferOES(GL_FRAMEBUFFER_OES, _framebuffer);
   glBindRenderbufferOES(GL_RENDERBUFFER_OES, _renderbuffer);
   
-  glClearColor(1.0, 0, 0, 1.0);
-  glClear(GL_COLOR_BUFFER_BIT);
+  [self drawOpenGL];
   
   [self.context presentRenderbuffer:GL_RENDERBUFFER_OES];
+}
+
+
+
+- (void)drawOpenGL {
+  const GLfloat zNear = 0.01,
+                zFar = 1000.0,
+                fieldOfView = 45.0;
+  
+  // setup camera
+	glEnable(GL_DEPTH_TEST);
+	glMatrixMode(GL_PROJECTION);
+  GLfloat size = zNear * tanf(DEGREES_TO_RADIANS(fieldOfView) / 2.0);
+	CGRect rect = self.bounds;
+	glFrustumf(-size, size, -size / (rect.size.width / rect.size.height), size /
+             (rect.size.width / rect.size.height), zNear, zFar);
+	glViewport(0, 0, rect.size.width, rect.size.height);
+	glMatrixMode(GL_MODELVIEW);
+	
+  
+  Vertex3D   vertex1  = Vertex3DMake( 0.0,  1.0, -3.0);
+  Vertex3D   vertex2  = Vertex3DMake( 1.0,  0.0, -3.0);
+  Vertex3D   vertex3  = Vertex3DMake(-1.0,  0.0, -3.0);
+  Triangle3D triangle = Triangle3DMake(vertex1, vertex2, vertex3);
+  
+  // clear opengl stufff
+  glLoadIdentity();
+  
+  // background color
+  glClearColor(0.5, 0.5, 0.5, 1.0);
+  glClear(GL_COLOR_BUFFER_BIT);
+  
+  glEnableClientState(GL_VERTEX_ARRAY);
+  
+  // red color
+  glColor4f(1.0, 0.0, 0.0, 1.0);
+  
+  glVertexPointer(3, GL_FLOAT, 0, &triangle);
+  glDrawArrays(GL_TRIANGLES, 0, 9);
+  
+  glDisableClientState(GL_VERTEX_ARRAY);
 }
 
 + (Class)layerClass {
