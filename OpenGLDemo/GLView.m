@@ -10,6 +10,9 @@
 #import <QuartzCore/QuartzCore.h>
 #import <OpenGLES/EAGLDrawable.h>
 
+// swtich between context backing-types (layer vs. data)
+#define BACKING_TYPE_LAYERBACKED 1
+
 @implementation GLView
 
 - (id)initWithFrame:(CGRect)frame
@@ -43,19 +46,39 @@
 - (BOOL)createBuffers{
   NSLog(@"[%@]", NSStringFromSelector(_cmd));
   
+  // generate buffers
   glGenFramebuffersOES(1, &_framebuffer);
   glGenRenderbuffersOES(1, &_renderbuffer);
   
+  // bind buffers
   glBindFramebufferOES(GL_FRAMEBUFFER_OES, _framebuffer);
   glBindRenderbufferOES(GL_RENDERBUFFER_OES, _renderbuffer);
-  [self.context renderbufferStorage:GL_RENDERBUFFER_OES fromDrawable:(CAEAGLLayer*)self.layer];
+  
+  // attach renderbuffer to framebuffer
   glFramebufferRenderbufferOES(GL_FRAMEBUFFER_OES, GL_COLOR_ATTACHMENT0_OES, GL_RENDERBUFFER_OES, _renderbuffer);
   
+  // specify buffer backing (layer or data)
+#if BACKING_TYPE_LAYERBACKED
+  
+  [self.context renderbufferStorage:GL_RENDERBUFFER_OES fromDrawable:(CAEAGLLayer*)self.layer];
   glGetRenderbufferParameterivOES(GL_RENDERBUFFER_OES, GL_RENDERBUFFER_WIDTH_OES, &_backingWidth);
   glGetRenderbufferParameterivOES(GL_RENDERBUFFER_OES, GL_RENDERBUFFER_HEIGHT_OES, &_backingHeight);
   
+  NSLog(@"   * layer-backed: {w = %i, h = %i}", _backingWidth, _backingHeight);
+  
+#else
+  
+  NSLog(@"   * data-backed");
+  
+  [self.context renderbufferStorage:GL_RENDERBUFFER_OES fromDrawable:nil];
+  glRenderbufferStorageOES(GL_RENDERBUFFER_OES, GL_RGBA8_OES, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+  
+#endif
+
+
+  // check for errors
   if (glCheckFramebufferStatusOES(GL_FRAMEBUFFER_OES) != GL_FRAMEBUFFER_COMPLETE_OES) {
-    NSLog(@"failed to make complete framebuffer object %x", glCheckFramebufferStatusOES(GL_FRAMEBUFFER_OES));
+    NSAssert(NO, @"Framebuffer status != GL_FRAMEBUFFER_COMPLETE_OES");
     return NO;
   }
   
