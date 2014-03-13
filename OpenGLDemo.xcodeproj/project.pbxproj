@@ -21,6 +21,8 @@
 		9F38594618D14FA60071F40F /* OpenGLDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F38594518D14FA60071F40F /* OpenGLDemoTests.m */; };
 		9F38595118D16CB30071F40F /* GLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F38595018D16CB30071F40F /* GLViewController.m */; };
 		9F38595418D1807A0071F40F /* GLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F38595318D1807A0071F40F /* GLView.m */; };
+		9F38595918D19FBD0071F40F /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F38595818D19FBD0071F40F /* OpenGLES.framework */; };
+		9F38595B18D1A00D0071F40F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F38595A18D1A00D0071F40F /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,8 @@
 		9F38595218D1807A0071F40F /* GLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLView.h; sourceTree = "<group>"; };
 		9F38595318D1807A0071F40F /* GLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLView.m; sourceTree = "<group>"; };
 		9F38595618D191E60071F40F /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = ../Constants.h; sourceTree = "<group>"; };
+		9F38595818D19FBD0071F40F /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/OpenGLES.framework; sourceTree = DEVELOPER_DIR; };
+		9F38595A18D1A00D0071F40F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +66,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F38595B18D1A00D0071F40F /* QuartzCore.framework in Frameworks */,
+				9F38595918D19FBD0071F40F /* OpenGLES.framework in Frameworks */,
 				9F38592318D14FA60071F40F /* CoreGraphics.framework in Frameworks */,
 				9F38592518D14FA60071F40F /* UIKit.framework in Frameworks */,
 				9F38592118D14FA60071F40F /* Foundation.framework in Frameworks */,
@@ -103,6 +109,8 @@
 		9F38591F18D14FA60071F40F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9F38595A18D1A00D0071F40F /* QuartzCore.framework */,
+				9F38595818D19FBD0071F40F /* OpenGLES.framework */,
 				9F38592018D14FA60071F40F /* Foundation.framework */,
 				9F38592218D14FA60071F40F /* CoreGraphics.framework */,
 				9F38592418D14FA60071F40F /* UIKit.framework */,
@@ -374,7 +382,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OpenGLDemo/OpenGLDemo-Prefix.pch";
 				INFOPLIST_FILE = "OpenGLDemo/OpenGLDemo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -387,7 +397,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OpenGLDemo/OpenGLDemo-Prefix.pch";
 				INFOPLIST_FILE = "OpenGLDemo/OpenGLDemo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

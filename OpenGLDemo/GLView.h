@@ -19,4 +19,6 @@
 @property (nonatomic) GLint backingWidth;
 @property (nonatomic) GLint backingHeight;
 
+- (void)captureFrame;
+
 @end

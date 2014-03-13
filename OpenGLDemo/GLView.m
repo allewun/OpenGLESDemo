@@ -43,7 +43,7 @@
 }
 */
 
-- (BOOL)createBuffers{
+- (BOOL)createBuffers {
   NSLog(@"[%@]", NSStringFromSelector(_cmd));
   
   // generate buffers
@@ -70,8 +70,11 @@
   
   NSLog(@"   * data-backed");
   
+  _backingWidth  = [UIScreen mainScreen].bounds.size.width;
+  _backingHeight = [UIScreen mainScreen].bounds.size.height;
+  
   [self.context renderbufferStorage:GL_RENDERBUFFER_OES fromDrawable:nil];
-  glRenderbufferStorageOES(GL_RENDERBUFFER_OES, GL_RGBA8_OES, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+  glRenderbufferStorageOES(GL_RENDERBUFFER_OES, GL_RGBA8_OES, _backingWidth, _backingHeight);
   
 #endif
 
@@ -111,6 +114,8 @@
   
   [self drawOpenGL];
   
+  [self captureFrame];
+  
   [self.context presentRenderbuffer:GL_RENDERBUFFER_OES];
 }
 
@@ -137,7 +142,7 @@
   Vertex3D   vertex3  = Vertex3DMake(-1.0,  0.0, -3.0);
   Triangle3D triangle = Triangle3DMake(vertex1, vertex2, vertex3);
   
-  // clear opengl stufff
+  // clear opengl stuff
   glLoadIdentity();
   
   // background color
@@ -157,6 +162,19 @@
 
 + (Class)layerClass {
   return [CAEAGLLayer class];
+}
+
+- (void)captureFrame {
+  NSLog(@"[%@]", NSStringFromSelector(_cmd));
+  
+  int bufferSize = _backingWidth * _backingHeight * 4;
+  void* pixelBuffer = malloc(bufferSize);
+
+  glReadPixels(0, 0, _backingWidth, _backingHeight, GL_RGBA, GL_UNSIGNED_BYTE, pixelBuffer);
+  
+//  NSLog(@"ERROR = %i", glGetError());
+  
+  free(pixelBuffer);
 }
 
 @end
