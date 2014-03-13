@@ -35,14 +35,20 @@
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
++ (Class)layerClass {
+  return [CAEAGLLayer class];
 }
-*/
+
+- (void)layoutSubviews {
+  NSLog(@"[%@]", NSStringFromSelector(_cmd));
+  
+  [EAGLContext setCurrentContext:self.context];
+  [self destroyBuffers];
+  [self createBuffers];
+  [self drawView];
+}
+
+#pragma mark - OpenGL methods (buffer setup)
 
 - (BOOL)createBuffers {
   NSLog(@"[%@]", NSStringFromSelector(_cmd));
@@ -98,14 +104,8 @@
   _renderbuffer = 0;
 }
 
-- (void)layoutSubviews {
-  NSLog(@"[%@]", NSStringFromSelector(_cmd));
-  
-  [EAGLContext setCurrentContext:self.context];
-  [self destroyBuffers];
-  [self createBuffers];
-  [self drawView];
-}
+
+#pragma mark - OpenGL methods (drawing)
 
 - (void)drawView {
   NSLog(@"[%@]", NSStringFromSelector(_cmd));
@@ -117,7 +117,6 @@
   
   [self.context presentRenderbuffer:GL_RENDERBUFFER_OES];
 }
-
 
 
 - (void)drawOpenGL {
@@ -135,7 +134,7 @@
 	glViewport(0, 0, rect.size.width, rect.size.height);
 	glMatrixMode(GL_MODELVIEW);
 	
-  
+  // define triangle vertices
   Vertex3D   vertex1  = Vertex3DMake( 0.0,  1.0, -3.0);
   Vertex3D   vertex2  = Vertex3DMake( 1.0,  0.0, -3.0);
   Vertex3D   vertex3  = Vertex3DMake(-1.0,  0.0, -3.0);
@@ -159,14 +158,14 @@
   glDisableClientState(GL_VERTEX_ARRAY);
 }
 
-+ (Class)layerClass {
-  return [CAEAGLLayer class];
-}
+
+#pragma mark - OpenGL capture frame
 
 - (void)captureFrame {
   NSLog(@"[%@]", NSStringFromSelector(_cmd));
   
-  int bufferSize = _backingWidth * _backingHeight * 4;
+  int bytesPerPixel = 4;
+  int bufferSize = _backingWidth * _backingHeight * bytesPerPixel;
   void* pixelBuffer = malloc(bufferSize);
 
   glReadPixels(0, 0, _backingWidth, _backingHeight, GL_RGBA, GL_UNSIGNED_BYTE, pixelBuffer);

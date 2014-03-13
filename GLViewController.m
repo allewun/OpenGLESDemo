@@ -21,7 +21,7 @@
   [super viewDidLoad];
   // Do any additional setup after loading the view.
   
-  self.button = [[UIButton alloc] initWithFrame:CGRectMake(85, [UIScreen mainScreen].bounds.size.height - 60, 150, 40)];
+  self.button = [[UIButton alloc] initWithFrame:CGRectMake(85, [UIScreen mainScreen].bounds.size.height - 80, 150, 40)];
   [self.button setTitle:@"glReadPixels();" forState:UIControlStateNormal];
   [self.button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
   [self.button setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.5]];
@@ -45,15 +45,5 @@
   [(GLView*)self.view captureFrame];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
