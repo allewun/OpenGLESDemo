@@ -10,6 +10,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import <OpenGLES/EAGLDrawable.h>
 #import "UIImage+BytesToImage.h"
+#import <AVFoundation/AVFoundation.h>
+#import "GPUImage.h"
 
 // swtich between context backing-types (layer vs. data)
 #define BACKING_TYPE_LAYERBACKED 0
@@ -167,7 +169,64 @@
   int bytesPerPixel = 4;
   int bufferSize = _backingWidth * _backingHeight * bytesPerPixel;
   void* pixelBuffer = malloc(bufferSize);
+  
+  
+  
+  
+  
+  
+  NSDictionary *sourcePixelBufferAttributesDictionary = @{((__bridge NSString *)kCVPixelBufferPixelFormatTypeKey):[NSNumber numberWithInt:kCVPixelFormatType_32BGRA],
+                                                          ((__bridge NSString *)kCVPixelBufferWidthKey):[NSNumber numberWithInt:_backingWidth],
+                                                          ((__bridge NSString *)kCVPixelBufferHeightKey):[NSNumber numberWithInt:_backingHeight]};
+  
+  AVAssetWriterInput *assetWriterVideoInput = [AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeVideo outputSettings:sourcePixelBufferAttributesDictionary];
+  
+  AVAssetWriterInputPixelBufferAdaptor *assetWriterPixelBufferInput = [AVAssetWriterInputPixelBufferAdaptor assetWriterInputPixelBufferAdaptorWithAssetWriterInput:assetWriterVideoInput sourcePixelBufferAttributes:sourcePixelBufferAttributesDictionary];
+  
+  CVOpenGLESTextureCacheRef coreVideoTextureCache;
+  
+  CVReturn err = CVOpenGLESTextureCacheCreate(kCFAllocatorDefault, NULL, (__bridge CVEAGLContext)((__bridge void *)[[GPUImageContext sharedImageProcessingContext] context]), NULL, &coreVideoTextureCache);
+  
+  if (err)
+  {
+    NSAssert(NO, @"Error at CVOpenGLESTextureCacheCreate %d", err);
+  }
+  
+  CVPixelBufferRef renderTarget;
+  
+  err = CVPixelBufferPoolCreatePixelBuffer (NULL, [assetWriterPixelBufferInput pixelBufferPool], &renderTarget);
+  
+  if (err)
+  {
+    NSAssert(NO, @"Error at CVPixelBufferPoolCreatePixelBuffer %d", err);
+  }
+  
+  CVOpenGLESTextureRef renderTexture;
+  
+  CVOpenGLESTextureCacheCreateTextureFromImage (kCFAllocatorDefault, coreVideoTextureCache, renderTarget,
+                                                NULL, // texture attributes
+                                                GL_TEXTURE_2D,
+                                                GL_RGBA, // opengl format
+                                                (int)_backingWidth,
+                                                (int)_backingHeight,
+                                                GL_BGRA, // native iOS format
+                                                GL_UNSIGNED_BYTE,
+                                                0,
+                                                &renderTexture);
+  
+  glBindTexture(CVOpenGLESTextureGetTarget(renderTexture), CVOpenGLESTextureGetName(renderTexture));
+  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+  
+  glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, CVOpenGLESTextureGetName(renderTexture), 0);
+  
+  
 
+  
+  
+  
+  
+  
   glReadPixels(0, 0, _backingWidth, _backingHeight, GL_RGBA, GL_UNSIGNED_BYTE, pixelBuffer);
   
   UIImage* image = [UIImage imageFromBytes:pixelBuffer bufferSize:bufferSize width:_backingWidth height:_backingHeight];

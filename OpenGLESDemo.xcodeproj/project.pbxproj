@@ -21,9 +21,13 @@
 		9F38594618D14FA60071F40F /* OpenGLDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F38594518D14FA60071F40F /* OpenGLDemoTests.m */; };
 		9F38595118D16CB30071F40F /* GLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F38595018D16CB30071F40F /* GLViewController.m */; };
 		9F38595418D1807A0071F40F /* GLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F38595318D1807A0071F40F /* GLView.m */; };
-		9F38595918D19FBD0071F40F /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F38595818D19FBD0071F40F /* OpenGLES.framework */; };
-		9F38595B18D1A00D0071F40F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F38595A18D1A00D0071F40F /* QuartzCore.framework */; };
 		9F38596518D1A8100071F40F /* UIImage+BytesToImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F38596418D1A8100071F40F /* UIImage+BytesToImage.m */; };
+		F8AF231E18D24782000AA892 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8AF231D18D24782000AA892 /* AVFoundation.framework */; };
+		F8AF251B18D24BD3000AA892 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8AF251A18D24BD3000AA892 /* OpenGLES.framework */; };
+		F8AF251D18D24BD9000AA892 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8AF251C18D24BD9000AA892 /* QuartzCore.framework */; };
+		F8AF251F18D24BE2000AA892 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8AF251E18D24BE2000AA892 /* CoreMedia.framework */; };
+		F8AF252118D24BE6000AA892 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8AF252018D24BE6000AA892 /* CoreVideo.framework */; };
+		F8AF254E18D25020000AA892 /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8AF254918D2500E000AA892 /* libGPUImage.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +37,27 @@
 			proxyType = 1;
 			remoteGlobalIDString = 9F38591C18D14FA60071F40F;
 			remoteInfo = OpenGLDemo;
+		};
+		F8AF254818D2500E000AA892 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F8AF254218D2500D000AA892 /* GPUImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BCF1A33414DDB1EC00852800;
+			remoteInfo = GPUImage;
+		};
+		F8AF254A18D2500E000AA892 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F8AF254218D2500D000AA892 /* GPUImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BCF1A34414DDB1EC00852800;
+			remoteInfo = GPUImageTests;
+		};
+		F8AF254C18D25017000AA892 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F8AF254218D2500D000AA892 /* GPUImage.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BCF1A33314DDB1EC00852800;
+			remoteInfo = GPUImage;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -62,6 +87,12 @@
 		9F38595A18D1A00D0071F40F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		9F38596318D1A8100071F40F /* UIImage+BytesToImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+BytesToImage.h"; path = "../UIImage+BytesToImage.h"; sourceTree = "<group>"; };
 		9F38596418D1A8100071F40F /* UIImage+BytesToImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+BytesToImage.m"; path = "../UIImage+BytesToImage.m"; sourceTree = "<group>"; };
+		F8AF231D18D24782000AA892 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		F8AF251A18D24BD3000AA892 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		F8AF251C18D24BD9000AA892 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		F8AF251E18D24BE2000AA892 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		F8AF252018D24BE6000AA892 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		F8AF254218D2500D000AA892 /* GPUImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GPUImage.xcodeproj; path = "GPUImage-master/framework/GPUImage.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,8 +100,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F38595B18D1A00D0071F40F /* QuartzCore.framework in Frameworks */,
-				9F38595918D19FBD0071F40F /* OpenGLES.framework in Frameworks */,
+				F8AF254E18D25020000AA892 /* libGPUImage.a in Frameworks */,
+				F8AF252118D24BE6000AA892 /* CoreVideo.framework in Frameworks */,
+				F8AF251F18D24BE2000AA892 /* CoreMedia.framework in Frameworks */,
+				F8AF251D18D24BD9000AA892 /* QuartzCore.framework in Frameworks */,
+				F8AF251B18D24BD3000AA892 /* OpenGLES.framework in Frameworks */,
+				F8AF231E18D24782000AA892 /* AVFoundation.framework in Frameworks */,
 				9F38592318D14FA60071F40F /* CoreGraphics.framework in Frameworks */,
 				9F38592518D14FA60071F40F /* UIKit.framework in Frameworks */,
 				9F38592118D14FA60071F40F /* Foundation.framework in Frameworks */,
@@ -93,6 +128,7 @@
 		9F38591418D14FA60071F40F = {
 			isa = PBXGroup;
 			children = (
+				F8AF254218D2500D000AA892 /* GPUImage.xcodeproj */,
 				9F38592618D14FA60071F40F /* OpenGLDemo */,
 				9F38593F18D14FA60071F40F /* OpenGLDemoTests */,
 				9F38591F18D14FA60071F40F /* Frameworks */,
@@ -112,6 +148,11 @@
 		9F38591F18D14FA60071F40F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F8AF252018D24BE6000AA892 /* CoreVideo.framework */,
+				F8AF251E18D24BE2000AA892 /* CoreMedia.framework */,
+				F8AF251C18D24BD9000AA892 /* QuartzCore.framework */,
+				F8AF251A18D24BD3000AA892 /* OpenGLES.framework */,
+				F8AF231D18D24782000AA892 /* AVFoundation.framework */,
 				9F38595A18D1A00D0071F40F /* QuartzCore.framework */,
 				9F38595818D19FBD0071F40F /* OpenGLES.framework */,
 				9F38592018D14FA60071F40F /* Foundation.framework */,
@@ -169,6 +210,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		F8AF254318D2500D000AA892 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F8AF254918D2500E000AA892 /* libGPUImage.a */,
+				F8AF254B18D2500E000AA892 /* GPUImageTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -183,6 +233,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				F8AF254D18D25017000AA892 /* PBXTargetDependency */,
 			);
 			name = OpenGLESDemo;
 			productName = OpenGLDemo;
@@ -231,6 +282,12 @@
 			mainGroup = 9F38591418D14FA60071F40F;
 			productRefGroup = 9F38591E18D14FA60071F40F /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = F8AF254318D2500D000AA892 /* Products */;
+					ProjectRef = F8AF254218D2500D000AA892 /* GPUImage.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				9F38591C18D14FA60071F40F /* OpenGLESDemo */,
@@ -238,6 +295,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		F8AF254918D2500E000AA892 /* libGPUImage.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libGPUImage.a;
+			remoteRef = F8AF254818D2500E000AA892 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F8AF254B18D2500E000AA892 /* GPUImageTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = GPUImageTests.octest;
+			remoteRef = F8AF254A18D2500E000AA892 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		9F38591B18D14FA60071F40F /* Resources */ = {
@@ -287,6 +361,11 @@
 			isa = PBXTargetDependency;
 			target = 9F38591C18D14FA60071F40F /* OpenGLESDemo */;
 			targetProxy = 9F38593D18D14FA60071F40F /* PBXContainerItemProxy */;
+		};
+		F8AF254D18D25017000AA892 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GPUImage;
+			targetProxy = F8AF254C18D25017000AA892 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -387,8 +466,17 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OpenGLDemo/OpenGLESDemo-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/GPUImage-master/framework/**",
+				);
 				INFOPLIST_FILE = "OpenGLDemo/OpenGLESDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/sagarpatel/Programs\\ 1/OpenGLESDemo",
+				);
 				PRODUCT_NAME = OpenGLESDemo;
 				SDKROOT = iphoneos6.1;
 				WRAPPER_EXTENSION = app;
@@ -402,8 +490,17 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OpenGLDemo/OpenGLESDemo-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/GPUImage-master/framework/**",
+				);
 				INFOPLIST_FILE = "OpenGLDemo/OpenGLESDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/sagarpatel/Programs\\ 1/OpenGLESDemo",
+				);
 				PRODUCT_NAME = OpenGLESDemo;
 				SDKROOT = iphoneos6.1;
 				WRAPPER_EXTENSION = app;
