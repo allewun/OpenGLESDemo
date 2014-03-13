@@ -14,7 +14,7 @@
 #import "GPUImage.h"
 
 // swtich between context backing-types (layer vs. data)
-#define BACKING_TYPE_LAYERBACKED 1
+#define BACKING_TYPE_LAYERBACKED 0
 
 // switch between OpenGL ES v1.1 and v2.0
 #define OPENGLES_VERSION_1 0
@@ -71,7 +71,7 @@ const GLubyte Indices[] = {
     eaglLayer.drawableProperties = @{kEAGLDrawablePropertyRetainedBacking: @NO,
                                      kEAGLDrawablePropertyColorFormat: kEAGLColorFormatRGBA8};
     
-    self.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
+    self.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2 sharegroup:[[[GPUImageContext sharedImageProcessingContext] context] sharegroup]];
     
     if (!self.context || ![EAGLContext setCurrentContext:self.context]) {
       return nil;
@@ -244,40 +244,43 @@ const GLubyte Indices[] = {
   int bufferSize = _backingWidth * _backingHeight * bytesPerPixel;
   void* pixelBuffer = malloc(bufferSize);
   
-
   
-  
-  
-  
-  NSDictionary *sourcePixelBufferAttributesDictionary = @{((__bridge NSString *)kCVPixelBufferPixelFormatTypeKey):[NSNumber numberWithInt:kCVPixelFormatType_32BGRA],
-                                                          ((__bridge NSString *)kCVPixelBufferWidthKey):[NSNumber numberWithInt:_backingWidth],
-                                                          ((__bridge NSString *)kCVPixelBufferHeightKey):[NSNumber numberWithInt:_backingHeight]};
-  
-  AVAssetWriterInput *assetWriterVideoInput = [AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeVideo outputSettings:sourcePixelBufferAttributesDictionary];
-  
-  AVAssetWriterInputPixelBufferAdaptor *assetWriterPixelBufferInput = [AVAssetWriterInputPixelBufferAdaptor assetWriterInputPixelBufferAdaptorWithAssetWriterInput:assetWriterVideoInput sourcePixelBufferAttributes:sourcePixelBufferAttributesDictionary];
-  
-  CVOpenGLESTextureCacheRef coreVideoTextureCache;
-  
-  CVReturn err = CVOpenGLESTextureCacheCreate(kCFAllocatorDefault, NULL, (__bridge CVEAGLContext)((__bridge void *)[[GPUImageContext sharedImageProcessingContext] context]), NULL, &coreVideoTextureCache);
-  
+  CVOpenGLESTextureCacheRef rawDataTextureCache;
+  CVReturn err = CVOpenGLESTextureCacheCreate(kCFAllocatorDefault, NULL, self.context, NULL, &rawDataTextureCache);
   if (err)
   {
     NSAssert(NO, @"Error at CVOpenGLESTextureCacheCreate %d", err);
   }
   
+  CFDictionaryRef empty; // empty value for attr value.
+  CFMutableDictionaryRef attrs;
+  empty = CFDictionaryCreate(kCFAllocatorDefault, // our empty IOSurface properties dictionary
+                             NULL,
+                             NULL,
+                             0,
+                             &kCFTypeDictionaryKeyCallBacks,
+                             &kCFTypeDictionaryValueCallBacks);
+  attrs = CFDictionaryCreateMutable(kCFAllocatorDefault,
+                                    1,
+                                    &kCFTypeDictionaryKeyCallBacks,
+                                    &kCFTypeDictionaryValueCallBacks);
+  
+  CFDictionarySetValue(attrs,
+                       kCVPixelBufferIOSurfacePropertiesKey,
+                       empty);
+  
   CVPixelBufferRef renderTarget;
-  
-  err = CVPixelBufferPoolCreatePixelBuffer (NULL, [assetWriterPixelBufferInput pixelBufferPool], &renderTarget);
-  
-  if (err)
-  {
-    NSAssert(NO, @"Error at CVPixelBufferPoolCreatePixelBuffer %d", err);
-  }
+  CVPixelBufferCreate(kCFAllocatorDefault,
+                      (int)_backingWidth,
+                      (int)_backingHeight,
+                      kCVPixelFormatType_32BGRA,
+                      attrs,
+                      &renderTarget);
   
   CVOpenGLESTextureRef renderTexture;
-  
-  CVOpenGLESTextureCacheCreateTextureFromImage (kCFAllocatorDefault, coreVideoTextureCache, renderTarget,
+  CVOpenGLESTextureCacheCreateTextureFromImage (kCFAllocatorDefault,
+                                                rawDataTextureCache,
+                                                renderTarget,
                                                 NULL, // texture attributes
                                                 GL_TEXTURE_2D,
                                                 GL_RGBA, // opengl format
@@ -288,12 +291,20 @@ const GLubyte Indices[] = {
                                                 0,
                                                 &renderTexture);
   
+  CFRelease(attrs);
+  CFRelease(empty);
   glBindTexture(CVOpenGLESTextureGetTarget(renderTexture), CVOpenGLESTextureGetName(renderTexture));
   glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
   glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
   
   glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, CVOpenGLESTextureGetName(renderTexture), 0);
   
+  GLubyte *_rawBytesForImage;
+  CVPixelBufferLockBaseAddress(renderTarget, 0);
+  _rawBytesForImage = (GLubyte *)CVPixelBufferGetBaseAddress(renderTarget);
+  // Do something with the bytes
+  UIImage *temp = [UIImage imageFromBytes:_rawBytesForImage bufferSize:bufferSize width:_backingWidth height:_backingHeight];
+  CVPixelBufferUnlockBaseAddress(renderTarget, 0);
   
   
   
