@@ -37,20 +37,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9F38591D18D14FA60071F40F /* OpenGLDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenGLDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F38591D18D14FA60071F40F /* OpenGLESDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenGLESDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F38592018D14FA60071F40F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9F38592218D14FA60071F40F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		9F38592418D14FA60071F40F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		9F38592818D14FA60071F40F /* OpenGLDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OpenGLDemo-Info.plist"; sourceTree = "<group>"; };
+		9F38592818D14FA60071F40F /* OpenGLESDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OpenGLESDemo-Info.plist"; sourceTree = "<group>"; };
 		9F38592A18D14FA60071F40F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9F38592C18D14FA60071F40F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		9F38592E18D14FA60071F40F /* OpenGLDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OpenGLDemo-Prefix.pch"; sourceTree = "<group>"; };
+		9F38592E18D14FA60071F40F /* OpenGLESDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OpenGLESDemo-Prefix.pch"; sourceTree = "<group>"; };
 		9F38592F18D14FA60071F40F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9F38593018D14FA60071F40F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		9F38593218D14FA60071F40F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		9F38593818D14FA60071F40F /* OpenGLDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OpenGLDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F38593818D14FA60071F40F /* OpenGLESDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OpenGLESDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F38593918D14FA60071F40F /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		9F38594118D14FA60071F40F /* OpenGLDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OpenGLDemoTests-Info.plist"; sourceTree = "<group>"; };
+		9F38594118D14FA60071F40F /* OpenGLESDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OpenGLESDemoTests-Info.plist"; sourceTree = "<group>"; };
 		9F38594318D14FA60071F40F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9F38594518D14FA60071F40F /* OpenGLDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenGLDemoTests.m; sourceTree = "<group>"; };
 		9F38594F18D16CB30071F40F /* GLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLViewController.h; path = ../GLViewController.h; sourceTree = "<group>"; };
@@ -103,8 +103,8 @@
 		9F38591E18D14FA60071F40F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9F38591D18D14FA60071F40F /* OpenGLDemo.app */,
-				9F38593818D14FA60071F40F /* OpenGLDemoTests.xctest */,
+				9F38591D18D14FA60071F40F /* OpenGLESDemo.app */,
+				9F38593818D14FA60071F40F /* OpenGLESDemoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -143,10 +143,10 @@
 		9F38592718D14FA60071F40F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				9F38592818D14FA60071F40F /* OpenGLDemo-Info.plist */,
+				9F38592818D14FA60071F40F /* OpenGLESDemo-Info.plist */,
 				9F38592918D14FA60071F40F /* InfoPlist.strings */,
 				9F38592C18D14FA60071F40F /* main.m */,
-				9F38592E18D14FA60071F40F /* OpenGLDemo-Prefix.pch */,
+				9F38592E18D14FA60071F40F /* OpenGLESDemo-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -163,7 +163,7 @@
 		9F38594018D14FA60071F40F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				9F38594118D14FA60071F40F /* OpenGLDemoTests-Info.plist */,
+				9F38594118D14FA60071F40F /* OpenGLESDemoTests-Info.plist */,
 				9F38594218D14FA60071F40F /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -172,9 +172,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9F38591C18D14FA60071F40F /* OpenGLDemo */ = {
+		9F38591C18D14FA60071F40F /* OpenGLESDemo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9F38594918D14FA60071F40F /* Build configuration list for PBXNativeTarget "OpenGLDemo" */;
+			buildConfigurationList = 9F38594918D14FA60071F40F /* Build configuration list for PBXNativeTarget "OpenGLESDemo" */;
 			buildPhases = (
 				9F38591918D14FA60071F40F /* Sources */,
 				9F38591A18D14FA60071F40F /* Frameworks */,
@@ -184,14 +184,14 @@
 			);
 			dependencies = (
 			);
-			name = OpenGLDemo;
+			name = OpenGLESDemo;
 			productName = OpenGLDemo;
-			productReference = 9F38591D18D14FA60071F40F /* OpenGLDemo.app */;
+			productReference = 9F38591D18D14FA60071F40F /* OpenGLESDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		9F38593718D14FA60071F40F /* OpenGLDemoTests */ = {
+		9F38593718D14FA60071F40F /* OpenGLESDemoTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9F38594C18D14FA60071F40F /* Build configuration list for PBXNativeTarget "OpenGLDemoTests" */;
+			buildConfigurationList = 9F38594C18D14FA60071F40F /* Build configuration list for PBXNativeTarget "OpenGLESDemoTests" */;
 			buildPhases = (
 				9F38593418D14FA60071F40F /* Sources */,
 				9F38593518D14FA60071F40F /* Frameworks */,
@@ -202,9 +202,9 @@
 			dependencies = (
 				9F38593E18D14FA60071F40F /* PBXTargetDependency */,
 			);
-			name = OpenGLDemoTests;
+			name = OpenGLESDemoTests;
 			productName = OpenGLDemoTests;
-			productReference = 9F38593818D14FA60071F40F /* OpenGLDemoTests.xctest */;
+			productReference = 9F38593818D14FA60071F40F /* OpenGLESDemoTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -221,7 +221,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9F38591818D14FA60071F40F /* Build configuration list for PBXProject "OpenGLDemo" */;
+			buildConfigurationList = 9F38591818D14FA60071F40F /* Build configuration list for PBXProject "OpenGLESDemo" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -233,8 +233,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9F38591C18D14FA60071F40F /* OpenGLDemo */,
-				9F38593718D14FA60071F40F /* OpenGLDemoTests */,
+				9F38591C18D14FA60071F40F /* OpenGLESDemo */,
+				9F38593718D14FA60071F40F /* OpenGLESDemoTests */,
 			);
 		};
 /* End PBXProject section */
@@ -285,7 +285,7 @@
 /* Begin PBXTargetDependency section */
 		9F38593E18D14FA60071F40F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9F38591C18D14FA60071F40F /* OpenGLDemo */;
+			target = 9F38591C18D14FA60071F40F /* OpenGLESDemo */;
 			targetProxy = 9F38593D18D14FA60071F40F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -386,10 +386,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "OpenGLDemo/OpenGLDemo-Prefix.pch";
-				INFOPLIST_FILE = "OpenGLDemo/OpenGLDemo-Info.plist";
+				GCC_PREFIX_HEADER = "OpenGLDemo/OpenGLESDemo-Prefix.pch";
+				INFOPLIST_FILE = "OpenGLDemo/OpenGLESDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = OpenGLESDemo;
 				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = app;
 			};
@@ -401,10 +401,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "OpenGLDemo/OpenGLDemo-Prefix.pch";
-				INFOPLIST_FILE = "OpenGLDemo/OpenGLDemo-Info.plist";
+				GCC_PREFIX_HEADER = "OpenGLDemo/OpenGLESDemo-Prefix.pch";
+				INFOPLIST_FILE = "OpenGLDemo/OpenGLESDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = OpenGLESDemo;
 				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = app;
 			};
@@ -425,8 +425,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "OpenGLDemoTests/OpenGLDemoTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "OpenGLDemoTests/OpenGLESDemoTests-Info.plist";
+				PRODUCT_NAME = OpenGLESDemoTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -443,8 +443,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OpenGLDemo/OpenGLDemo-Prefix.pch";
-				INFOPLIST_FILE = "OpenGLDemoTests/OpenGLDemoTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "OpenGLDemoTests/OpenGLESDemoTests-Info.plist";
+				PRODUCT_NAME = OpenGLESDemoTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -453,7 +453,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9F38591818D14FA60071F40F /* Build configuration list for PBXProject "OpenGLDemo" */ = {
+		9F38591818D14FA60071F40F /* Build configuration list for PBXProject "OpenGLESDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9F38594718D14FA60071F40F /* Debug */,
@@ -462,7 +462,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9F38594918D14FA60071F40F /* Build configuration list for PBXNativeTarget "OpenGLDemo" */ = {
+		9F38594918D14FA60071F40F /* Build configuration list for PBXNativeTarget "OpenGLESDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9F38594A18D14FA60071F40F /* Debug */,
@@ -470,7 +470,7 @@
 			);
 			defaultConfigurationIsVisible = 0;
 		};
-		9F38594C18D14FA60071F40F /* Build configuration list for PBXNativeTarget "OpenGLDemoTests" */ = {
+		9F38594C18D14FA60071F40F /* Build configuration list for PBXNativeTarget "OpenGLESDemoTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9F38594D18D14FA60071F40F /* Debug */,
