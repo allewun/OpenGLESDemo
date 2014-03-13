@@ -24,6 +24,8 @@
 		9F38595918D19FBD0071F40F /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F38595818D19FBD0071F40F /* OpenGLES.framework */; };
 		9F38595B18D1A00D0071F40F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F38595A18D1A00D0071F40F /* QuartzCore.framework */; };
 		9F38596518D1A8100071F40F /* UIImage+BytesToImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F38596418D1A8100071F40F /* UIImage+BytesToImage.m */; };
+		9F56E78E18D2657F00E0CFA7 /* Vertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 9F56E78D18D2657F00E0CFA7 /* Vertex.glsl */; };
+		9F56E79018D2659500E0CFA7 /* Fragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 9F56E78F18D2659500E0CFA7 /* Fragment.glsl */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,8 @@
 		9F38595A18D1A00D0071F40F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		9F38596318D1A8100071F40F /* UIImage+BytesToImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+BytesToImage.h"; path = "../UIImage+BytesToImage.h"; sourceTree = "<group>"; };
 		9F38596418D1A8100071F40F /* UIImage+BytesToImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+BytesToImage.m"; path = "../UIImage+BytesToImage.m"; sourceTree = "<group>"; };
+		9F56E78D18D2657F00E0CFA7 /* Vertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Vertex.glsl; sourceTree = "<group>"; };
+		9F56E78F18D2659500E0CFA7 /* Fragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Fragment.glsl; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +135,8 @@
 				9F38595018D16CB30071F40F /* GLViewController.m */,
 				9F38595218D1807A0071F40F /* GLView.h */,
 				9F38595318D1807A0071F40F /* GLView.m */,
+				9F56E78D18D2657F00E0CFA7 /* Vertex.glsl */,
+				9F56E78F18D2659500E0CFA7 /* Fragment.glsl */,
 				9F38595618D191E60071F40F /* Constants.h */,
 				9F38596318D1A8100071F40F /* UIImage+BytesToImage.h */,
 				9F38596418D1A8100071F40F /* UIImage+BytesToImage.m */,
@@ -245,7 +251,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F38592B18D14FA60071F40F /* InfoPlist.strings in Resources */,
+				9F56E79018D2659500E0CFA7 /* Fragment.glsl in Resources */,
 				9F38593318D14FA60071F40F /* Images.xcassets in Resources */,
+				9F56E78E18D2657F00E0CFA7 /* Vertex.glsl in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
