@@ -13,7 +13,7 @@
 
 // swtich between context backing-types
  // 0 = data-backed, 1 = layer-backed
-#define BACKING_TYPE_LAYERBACKED 0
+#define BACKING_TYPE_LAYERBACKED 1
 
 @implementation GLView
 
@@ -115,6 +115,10 @@
   glBindRenderbufferOES(GL_RENDERBUFFER_OES, _renderbuffer);
   
   [self drawOpenGL:color];
+
+#if BACKING_TYPE_LAYERBACKED
+  [self.context presentRenderbuffer:GL_RENDERBUFFER_OES];
+#endif
 }
 
 
@@ -148,19 +152,40 @@
 
   glReadPixels(0, 0, _backingWidth, _backingHeight, GL_RGBA, GL_UNSIGNED_BYTE, pixelBuffer);
   
+  UIImage* image = [UIImage imageFromBytes:pixelBuffer bufferSize:bufferSize width:_backingWidth height:_backingHeight];
+  
+  // print to console and UIAlertView
+  [self debugCapture:pixelBuffer];
+
+  free(pixelBuffer);
+}
+
+#pragma mark - Misc
+
+- (void)debugCapture:(void*)bytes {
+  NSMutableString* memoryString = [NSMutableString string];
+  
   // print first 5 pixels (20 bytes)
   NSLog(@"glReadPixels() -- first 5 pixels (20 bytes)");
   for (int i = 0; i < 5; i++) {
     printf("[ ");
+    [memoryString appendString:@"[ "];
+    
     for (int j = 0; j < 4; j++) {
-      printf("%x ", *((GLubyte*)pixelBuffer + (i*4) + j));
+      GLubyte byte = *((GLubyte*)bytes + (i*4) + j);
+      printf("%x ", byte);
+      [memoryString appendString:[NSString stringWithFormat:@"%x ", byte]];
     }
+    
     printf("]\n");
+    [memoryString appendString:@"]\n"];
   }
   
-  UIImage* image = [UIImage imageFromBytes:pixelBuffer bufferSize:bufferSize width:_backingWidth height:_backingHeight];
-  
-  free(pixelBuffer);
+  [[[UIAlertView alloc] initWithTitle:@"First 20 bytes"
+                              message:memoryString
+                             delegate:nil
+                    cancelButtonTitle:@"Ok"
+                    otherButtonTitles:nil] show];
 }
 
 @end
