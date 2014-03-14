@@ -11,7 +11,8 @@
 #import <OpenGLES/EAGLDrawable.h>
 #import "UIImage+BytesToImage.h"
 
-// swtich between context backing-types (layer vs. data)
+// swtich between context backing-types
+ // 0 = data-backed, 1 = layer-backed
 #define BACKING_TYPE_LAYERBACKED 0
 
 @implementation GLView
@@ -45,7 +46,7 @@
   [EAGLContext setCurrentContext:self.context];
   [self destroyBuffers];
   [self createBuffers];
-  [self drawView];
+  [self drawView:nil];
 }
 
 #pragma mark - OpenGL methods (buffer setup)
@@ -107,55 +108,32 @@
 
 #pragma mark - OpenGL methods (drawing)
 
-- (void)drawView {
+- (void)drawView:(UIColor*)color {
   NSLog(@"[%@]", NSStringFromSelector(_cmd));
   
   glBindFramebufferOES(GL_FRAMEBUFFER_OES, _framebuffer);
   glBindRenderbufferOES(GL_RENDERBUFFER_OES, _renderbuffer);
   
-  [self drawOpenGL];
-  
-  [self.context presentRenderbuffer:GL_RENDERBUFFER_OES];
+  [self drawOpenGL:color];
 }
 
 
-- (void)drawOpenGL {
-  const GLfloat zNear = 0.01,
-                zFar = 1000.0,
-                fieldOfView = 45.0;
+- (void)drawOpenGL:(UIColor*)color {
   
-  // setup camera
-	glEnable(GL_DEPTH_TEST);
-	glMatrixMode(GL_PROJECTION);
-  GLfloat size = zNear * tanf(DEGREES_TO_RADIANS(fieldOfView) / 2.0);
-	CGRect rect = self.bounds;
-	glFrustumf(-size, size, -size / (rect.size.width / rect.size.height), size /
-             (rect.size.width / rect.size.height), zNear, zFar);
-	glViewport(0, 0, rect.size.width, rect.size.height);
-	glMatrixMode(GL_MODELVIEW);
-	
-  // define triangle vertices
-  Vertex3D   vertex1  = Vertex3DMake( 0.0,  1.0, -3.0);
-  Vertex3D   vertex2  = Vertex3DMake( 1.0,  0.0, -3.0);
-  Vertex3D   vertex3  = Vertex3DMake(-1.0,  0.0, -3.0);
-  Triangle3D triangle = Triangle3DMake(vertex1, vertex2, vertex3);
+  // if no color, default to gray
+  CGFloat red   = 0.5;
+  CGFloat green = 0.5;
+  CGFloat blue  = 0.5;
+  CGFloat alpha = 1.0;
+  
+  [color getRed:&red green:&green blue:&blue alpha:&alpha];
   
   // clear opengl stuff
   glLoadIdentity();
   
   // background color
-  glClearColor(0.5, 0.5, 0.5, 1.0);
+  glClearColor(red, green, blue, 1.0);
   glClear(GL_COLOR_BUFFER_BIT);
-  
-  glEnableClientState(GL_VERTEX_ARRAY);
-  
-  // red color
-  glColor4f(1.0, 0.0, 0.0, 1.0);
-  
-  glVertexPointer(3, GL_FLOAT, 0, &triangle);
-  glDrawArrays(GL_TRIANGLES, 0, 9);
-  
-  glDisableClientState(GL_VERTEX_ARRAY);
 }
 
 
@@ -169,6 +147,16 @@
   void* pixelBuffer = malloc(bufferSize);
 
   glReadPixels(0, 0, _backingWidth, _backingHeight, GL_RGBA, GL_UNSIGNED_BYTE, pixelBuffer);
+  
+  // print first 5 pixels (20 bytes)
+  NSLog(@"glReadPixels() -- first 5 pixels (20 bytes)");
+  for (int i = 0; i < 5; i++) {
+    printf("[ ");
+    for (int j = 0; j < 4; j++) {
+      printf("%x ", *((GLubyte*)pixelBuffer + (i*4) + j));
+    }
+    printf("]\n");
+  }
   
   UIImage* image = [UIImage imageFromBytes:pixelBuffer bufferSize:bufferSize width:_backingWidth height:_backingHeight];
   

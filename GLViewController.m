@@ -11,7 +11,8 @@
 
 
 @interface GLViewController ()
-@property (nonatomic, strong) UIButton* button;
+@property (nonatomic, strong) UIButton* captureButton;
+@property (nonatomic, strong) UIButton* colorButton;
 @end
 
 @implementation GLViewController
@@ -21,17 +22,32 @@
   [super viewDidLoad];
   // Do any additional setup after loading the view.
   
-  self.button = [[UIButton alloc] initWithFrame:CGRectMake(85, [UIScreen mainScreen].bounds.size.height - 80, 150, 40)];
-  [self.button setTitle:@"glReadPixels();" forState:UIControlStateNormal];
-  [self.button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-  [self.button setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.5]];
-  [self.button setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
-  [self.button setTitleShadowColor:[UIColor blackColor] forState:UIControlStateNormal];
-  [self.button.layer setCornerRadius:8.0];
-  [self.button addTarget:self action:@selector(buttonPressed) forControlEvents:UIControlEventTouchUpInside];
+  // capture opengl content button
+  self.captureButton = [[UIButton alloc] initWithFrame:CGRectMake(15, [UIScreen mainScreen].bounds.size.height - 80, 130, 40)];
+  [self.captureButton setTitle:@"glReadPixels();" forState:UIControlStateNormal];
+  self.captureButton.titleLabel.font = [UIFont systemFontOfSize:14];
+  [self.captureButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+  [self.captureButton setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.5]];
+  [self.captureButton setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+  [self.captureButton setTitleShadowColor:[UIColor blackColor] forState:UIControlStateNormal];
+  [self.captureButton.layer setCornerRadius:8.0];
+  [self.captureButton addTarget:self action:@selector(captureButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+  
+  // color button
+  self.colorButton = [[UIButton alloc] initWithFrame:CGRectMake(175, [UIScreen mainScreen].bounds.size.height - 80, 130, 40)];
+  [self.colorButton setTitle:@"Random Color" forState:UIControlStateNormal];
+  self.colorButton.titleLabel.font = [UIFont systemFontOfSize:14];
+  [self.colorButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+  [self.colorButton setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.5]];
+  [self.colorButton setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+  [self.colorButton setTitleShadowColor:[UIColor blackColor] forState:UIControlStateNormal];
+  [self.colorButton.layer setCornerRadius:8.0];
+  [self.colorButton addTarget:self action:@selector(colorButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+
   
   self.view = [[GLView alloc] init];
-  [self.view addSubview:self.button];
+  [self.view addSubview:self.captureButton];
+  [self.view addSubview:self.colorButton];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,10 +55,27 @@
   // Dispose of any resources that can be recreated.
 }
 
-- (void)buttonPressed {
+- (void)captureButtonPressed {
   NSLog(@"[%@]", NSStringFromSelector(_cmd));
   
   [(GLView*)self.view captureFrame];
+}
+
+- (void)colorButtonPressed {
+  NSLog(@"[%@]", NSStringFromSelector(_cmd));
+  
+  CGFloat red   = drand48();
+  CGFloat blue  = drand48();
+  CGFloat green = drand48();
+  UIColor* randomColor = [UIColor colorWithRed:red green:green blue:blue alpha:1.0];
+  
+  [(GLView*)self.view drawView:randomColor];
+  
+  [[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"#%02x%02x%02x", (int)(255 * red), (int)(255 * green), (int)(255 * blue)]
+                              message:@"Redrew OpenGL context with random background color"
+                             delegate:nil
+                    cancelButtonTitle:@"Ok"
+                    otherButtonTitles:nil] show];
 }
 
 

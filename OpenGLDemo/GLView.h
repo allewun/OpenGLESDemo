@@ -20,5 +20,6 @@
 @property (nonatomic) GLint backingHeight;
 
 - (void)captureFrame;
+- (void)drawView:(UIColor*)color;
 
 @end
