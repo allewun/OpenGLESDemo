@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F02E77218D3E010003A172F /* GLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F02E77118D3E010003A172F /* GLViewController.m */; };
+		9F02E77518D3E018003A172F /* UIImage+BytesToImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F02E77418D3E018003A172F /* UIImage+BytesToImage.m */; };
 		9F38592118D14FA60071F40F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F38592018D14FA60071F40F /* Foundation.framework */; };
 		9F38592318D14FA60071F40F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F38592218D14FA60071F40F /* CoreGraphics.framework */; };
 		9F38592518D14FA60071F40F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F38592418D14FA60071F40F /* UIKit.framework */; };
@@ -19,11 +21,9 @@
 		9F38593C18D14FA60071F40F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F38592418D14FA60071F40F /* UIKit.framework */; };
 		9F38594418D14FA60071F40F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F38594218D14FA60071F40F /* InfoPlist.strings */; };
 		9F38594618D14FA60071F40F /* OpenGLDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F38594518D14FA60071F40F /* OpenGLDemoTests.m */; };
-		9F38595118D16CB30071F40F /* GLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F38595018D16CB30071F40F /* GLViewController.m */; };
 		9F38595418D1807A0071F40F /* GLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F38595318D1807A0071F40F /* GLView.m */; };
 		9F38595918D19FBD0071F40F /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F38595818D19FBD0071F40F /* OpenGLES.framework */; };
 		9F38595B18D1A00D0071F40F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F38595A18D1A00D0071F40F /* QuartzCore.framework */; };
-		9F38596518D1A8100071F40F /* UIImage+BytesToImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F38596418D1A8100071F40F /* UIImage+BytesToImage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +37,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9F02E77018D3E010003A172F /* GLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLViewController.h; sourceTree = "<group>"; };
+		9F02E77118D3E010003A172F /* GLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLViewController.m; sourceTree = "<group>"; };
+		9F02E77318D3E018003A172F /* UIImage+BytesToImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+BytesToImage.h"; sourceTree = "<group>"; };
+		9F02E77418D3E018003A172F /* UIImage+BytesToImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BytesToImage.m"; sourceTree = "<group>"; };
+		9F02E77618D3E01E003A172F /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		9F38591D18D14FA60071F40F /* OpenGLESDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenGLESDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F38592018D14FA60071F40F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9F38592218D14FA60071F40F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -53,15 +58,10 @@
 		9F38594118D14FA60071F40F /* OpenGLESDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OpenGLESDemoTests-Info.plist"; sourceTree = "<group>"; };
 		9F38594318D14FA60071F40F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9F38594518D14FA60071F40F /* OpenGLDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenGLDemoTests.m; sourceTree = "<group>"; };
-		9F38594F18D16CB30071F40F /* GLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLViewController.h; path = ../GLViewController.h; sourceTree = "<group>"; };
-		9F38595018D16CB30071F40F /* GLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLViewController.m; path = ../GLViewController.m; sourceTree = "<group>"; };
 		9F38595218D1807A0071F40F /* GLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLView.h; sourceTree = "<group>"; };
 		9F38595318D1807A0071F40F /* GLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLView.m; sourceTree = "<group>"; };
-		9F38595618D191E60071F40F /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = ../Constants.h; sourceTree = "<group>"; };
 		9F38595818D19FBD0071F40F /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/OpenGLES.framework; sourceTree = DEVELOPER_DIR; };
 		9F38595A18D1A00D0071F40F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
-		9F38596318D1A8100071F40F /* UIImage+BytesToImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+BytesToImage.h"; path = "../UIImage+BytesToImage.h"; sourceTree = "<group>"; };
-		9F38596418D1A8100071F40F /* UIImage+BytesToImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+BytesToImage.m"; path = "../UIImage+BytesToImage.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,13 +127,13 @@
 			children = (
 				9F38592F18D14FA60071F40F /* AppDelegate.h */,
 				9F38593018D14FA60071F40F /* AppDelegate.m */,
-				9F38594F18D16CB30071F40F /* GLViewController.h */,
-				9F38595018D16CB30071F40F /* GLViewController.m */,
+				9F02E77018D3E010003A172F /* GLViewController.h */,
+				9F02E77118D3E010003A172F /* GLViewController.m */,
 				9F38595218D1807A0071F40F /* GLView.h */,
 				9F38595318D1807A0071F40F /* GLView.m */,
-				9F38595618D191E60071F40F /* Constants.h */,
-				9F38596318D1A8100071F40F /* UIImage+BytesToImage.h */,
-				9F38596418D1A8100071F40F /* UIImage+BytesToImage.m */,
+				9F02E77618D3E01E003A172F /* Constants.h */,
+				9F02E77318D3E018003A172F /* UIImage+BytesToImage.h */,
+				9F02E77418D3E018003A172F /* UIImage+BytesToImage.m */,
 				9F38593218D14FA60071F40F /* Images.xcassets */,
 				9F38592718D14FA60071F40F /* Supporting Files */,
 			);
@@ -265,9 +265,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F38593118D14FA60071F40F /* AppDelegate.m in Sources */,
+				9F02E77218D3E010003A172F /* GLViewController.m in Sources */,
 				9F38595418D1807A0071F40F /* GLView.m in Sources */,
-				9F38595118D16CB30071F40F /* GLViewController.m in Sources */,
-				9F38596518D1A8100071F40F /* UIImage+BytesToImage.m in Sources */,
+				9F02E77518D3E018003A172F /* UIImage+BytesToImage.m in Sources */,
 				9F38592D18D14FA60071F40F /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
