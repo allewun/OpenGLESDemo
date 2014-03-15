@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Originate. All rights reserved.
 //
 
+// from https://github.com/jlamarche/iOS-OpenGLES-Stuff
+
 typedef struct {
 	GLfloat	x;
 	GLfloat y;

@@ -19,7 +19,10 @@
 @property (nonatomic) GLint backingWidth;
 @property (nonatomic) GLint backingHeight;
 
+@property (nonatomic, strong) UIColor* backgroundColor;
+
 - (void)captureFrame;
-- (void)drawView:(UIColor*)color;
+- (void)drawView;
+- (void)drawViewAndPresent;
 
 @end

@@ -32,6 +32,8 @@
       if (!self.context || ![EAGLContext setCurrentContext:self.context]) {
         return nil;
       }
+      
+      self.backgroundColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:1.0];
     }
     return self;
 }
@@ -46,7 +48,7 @@
   [EAGLContext setCurrentContext:self.context];
   [self destroyBuffers];
   [self createBuffers];
-  [self drawView:nil];
+  [self drawViewAndPresent];
 }
 
 #pragma mark - OpenGL methods (buffer setup)
@@ -66,26 +68,25 @@
   glFramebufferRenderbufferOES(GL_FRAMEBUFFER_OES, GL_COLOR_ATTACHMENT0_OES, GL_RENDERBUFFER_OES, _renderbuffer);
   
   // specify buffer backing (layer or data)
-#if BACKING_TYPE_LAYERBACKED
+  #if BACKING_TYPE_LAYERBACKED
   
-  [self.context renderbufferStorage:GL_RENDERBUFFER_OES fromDrawable:(CAEAGLLayer*)self.layer];
-  glGetRenderbufferParameterivOES(GL_RENDERBUFFER_OES, GL_RENDERBUFFER_WIDTH_OES, &_backingWidth);
-  glGetRenderbufferParameterivOES(GL_RENDERBUFFER_OES, GL_RENDERBUFFER_HEIGHT_OES, &_backingHeight);
+    [self.context renderbufferStorage:GL_RENDERBUFFER_OES fromDrawable:(CAEAGLLayer*)self.layer];
+    glGetRenderbufferParameterivOES(GL_RENDERBUFFER_OES, GL_RENDERBUFFER_WIDTH_OES, &_backingWidth);
+    glGetRenderbufferParameterivOES(GL_RENDERBUFFER_OES, GL_RENDERBUFFER_HEIGHT_OES, &_backingHeight);
   
-  NSLog(@"   * layer-backed: {w = %i, h = %i}", _backingWidth, _backingHeight);
+    NSLog(@"   * layer-backed: {w = %i, h = %i}", _backingWidth, _backingHeight);
   
-#else
+  #else
   
-  NSLog(@"   * data-backed");
+    NSLog(@"   * data-backed");
   
-  _backingWidth  = [UIScreen mainScreen].bounds.size.width;
-  _backingHeight = [UIScreen mainScreen].bounds.size.height;
+    _backingWidth  = [UIScreen mainScreen].bounds.size.width;
+    _backingHeight = [UIScreen mainScreen].bounds.size.height;
   
-  [self.context renderbufferStorage:GL_RENDERBUFFER_OES fromDrawable:nil];
-  glRenderbufferStorageOES(GL_RENDERBUFFER_OES, GL_RGBA8_OES, _backingWidth, _backingHeight);
+    [self.context renderbufferStorage:GL_RENDERBUFFER_OES fromDrawable:nil];
+    glRenderbufferStorageOES(GL_RENDERBUFFER_OES, GL_RGBA8_OES, _backingWidth, _backingHeight);
   
-#endif
-
+  #endif
 
   // check for errors
   if (glCheckFramebufferStatusOES(GL_FRAMEBUFFER_OES) != GL_FRAMEBUFFER_COMPLETE_OES) {
@@ -108,21 +109,32 @@
 
 #pragma mark - OpenGL methods (drawing)
 
-- (void)drawView:(UIColor*)color {
+- (void)bindBuffers {
   NSLog(@"[%@]", NSStringFromSelector(_cmd));
   
   glBindFramebufferOES(GL_FRAMEBUFFER_OES, _framebuffer);
   glBindRenderbufferOES(GL_RENDERBUFFER_OES, _renderbuffer);
-  
-  [self drawOpenGL:color];
-
-#if BACKING_TYPE_LAYERBACKED
-  [self.context presentRenderbuffer:GL_RENDERBUFFER_OES];
-#endif
 }
 
+- (void)drawView {
+  NSLog(@"[%@]", NSStringFromSelector(_cmd));
+  
+  [self bindBuffers];
+  [self drawOpenGL];
+}
 
-- (void)drawOpenGL:(UIColor*)color {
+- (void)drawViewAndPresent {
+  NSLog(@"[%@]", NSStringFromSelector(_cmd));
+  
+  [self drawView];
+  
+  #if BACKING_TYPE_LAYERBACKED
+    [self.context presentRenderbuffer:GL_RENDERBUFFER_OES];
+  #endif
+}
+
+- (void)drawOpenGL {
+  NSLog(@"[%@]", NSStringFromSelector(_cmd));
   
   // if no color, default to gray
   CGFloat red   = 0.5;
@@ -130,7 +142,7 @@
   CGFloat blue  = 0.5;
   CGFloat alpha = 1.0;
   
-  [color getRed:&red green:&green blue:&blue alpha:&alpha];
+  [self.backgroundColor getRed:&red green:&green blue:&blue alpha:&alpha];
   
   // clear opengl stuff
   glLoadIdentity();
@@ -145,6 +157,8 @@
 
 - (void)captureFrame {
   NSLog(@"[%@]", NSStringFromSelector(_cmd));
+  
+  [self drawView];
   
   int bytesPerPixel = 4;
   int bufferSize = _backingWidth * _backingHeight * bytesPerPixel;
