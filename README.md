@@ -32,3 +32,6 @@ The table below shows the configurations where it works and doesn't work.
 ## Help?
 
 Any help would be greatly appreciated! This problem was also posted to [Stack Overflow](https://stackoverflow.com/questions/22393687/glreadpixels-gives-a-black-image-only-on-ios-7-device).
+
+***UPDATE:***
+[Matic Oblak's response on Stack Overflow](http://stackoverflow.com/a/22449287/3418047) fixed the problem (still not sure why the original code only failed for iOS 7 though).

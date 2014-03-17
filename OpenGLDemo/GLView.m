@@ -83,7 +83,6 @@
     _backingWidth  = [UIScreen mainScreen].bounds.size.width;
     _backingHeight = [UIScreen mainScreen].bounds.size.height;
   
-    [self.context renderbufferStorage:GL_RENDERBUFFER_OES fromDrawable:nil];
     glRenderbufferStorageOES(GL_RENDERBUFFER_OES, GL_RGBA8_OES, _backingWidth, _backingHeight);
   
   #endif
